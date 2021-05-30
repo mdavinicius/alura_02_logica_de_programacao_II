@@ -1,0 +1,44 @@
+<canvas width="600" height="400"></canvas>
+<script>
+	// Fazer um efeito para que pareça que a bolinha está andando pela tela. Quando chegar ao final, ela deve voltar ao início.
+
+	var tela = document.querySelector("canvas");
+	var pincel = tela.getContext("2d");
+	//pincel.fillStyle = "lightgrey";
+	//pincel.fillRect(0, 0, 600, 400);
+
+	function desenhaCirculo(x, y, raio) {
+
+		pincel.fillStyle = "blue";
+		pincel.beginPath();
+		pincel.arc(x, y, raio, 0, 2 * Math.PI);
+		pincel.fill();
+	}
+ 	
+ 	function limpaTela() {
+
+ 		pincel.clearRect(0, 0, 600, 400);
+ 	}
+
+ 	var x = 20
+ 	var xVolta = 590
+	function atualizaTela() {
+
+		limpaTela()
+		if(x < 590) {
+			desenhaCirculo(x, 20, 10);	
+			x++;
+		}
+		if(x == 590) {
+			desenhaCirculo(xVolta, 20, 10);	
+			xVolta--;
+		}
+		if(xVolta == 10) {
+			x = 10;
+			xVolta = 590;
+		}
+	} 	
+
+	setInterval(atualizaTela, 10);
+
+</script>
